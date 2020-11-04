@@ -10,7 +10,6 @@ with open("some_file.txt") as fi:
         ...
 """
 import io
-
 from typing import Tuple
 
 
