@@ -1,12 +1,12 @@
 [flake8]
-ignore = E203, E501, W503,  # handled by black
-         ANN101, ANN204, D, I, S101, PT006
+ignore = E203, E501, W503, PT006, ANN, S101,
+  D10, D101, D103# handled by black
 exclude =
     *_venv
     venv_*
 max-complexity = 7
-max-cognitive-complexity = 5
+max-cognitive-complexity = 8
 per-file-ignores =
-    test/*: D10, D101, D103, S101, ANN
+    /Homework/homework1/test/*: D10, D101, D103, S101, ANN
 application-import-names = homework1
 doctests = True
