@@ -12,11 +12,24 @@ def _check_window(x: int, y: int, z: int) -> int:
     return (x + y) == z
 
 
-def check_fibonacci(data: Sequence[int]) -> bool:
-    if len(data) < 3 or data[1] == 0:
-        return False
-    for i in range(len(data) - 3):
+def _check_fibonacci(data: Sequence[int]) -> bool:
+    """
+    Check the rule of fib seq D[i] + D[i+1] = D[i+2].
+
+    Created for improve Cognitive Complexity.
+    """
+    for i in range(len(data) - 2):
         a, b, c = data[i], data[i + 1], data[i + 2]
         if not _check_window(a, b, c):
             return False
     return True
+
+
+def check_fibonacci(data: Sequence[int]) -> bool:
+    if len(data) < 3:
+        return False
+    if data[0] != 0 and data[1] != 1:
+        return False
+    elif data[0] != 1 and data[1] != 1:
+        return False
+    return _check_fibonacci(data)
