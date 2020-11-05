@@ -26,6 +26,5 @@ def _find_maximum_and_minimum(file: io.StringIO()) -> Tuple[int, int]:
 
 
 def find_maximum_and_minimum(file_name: str) -> Tuple[int, int]:
-
-    file = io.StringIO(file_name)
+    file = open(file_name, "r")
     return _find_maximum_and_minimum(file)
