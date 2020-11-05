@@ -24,7 +24,7 @@ def test_find_maximum_and_minimum_helper(
 
 @pytest.mark.parametrize(
     ["value", "expected_result"],
-    [("some_file.txt", (-100, 3894))],
+    [("Homework/homework1/some_file.txt", (-100, 3894))],
 )
 def test_find_maximum_and_minimum(value, expected_result):
     assert find_maximum_and_minimum(value) == expected_result
