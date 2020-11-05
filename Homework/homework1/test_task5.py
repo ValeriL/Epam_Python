@@ -35,9 +35,7 @@ from homework1.task5 import find_maximal_subarray_sum
         ([1, 0, 0, 0, 0, 0, 1], 4, 1),
     ],
 )
-def test_find_maximal_subarray_sum(
-    nums_list: List[int], k: int, expected_result: int
-):
+def test_find_maximal_subarray_sum(nums_list: List[int], k: int, expected_result: int):
     actual_result = find_maximal_subarray_sum(nums_list, k)
 
     assert actual_result == expected_result
