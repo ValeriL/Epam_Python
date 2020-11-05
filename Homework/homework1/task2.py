@@ -16,7 +16,7 @@ def _check_fibonacci(data: Sequence[int]) -> bool:
     """
     Check the rule of fib seq D[i] + D[i+1] = D[i+2].
 
-    Created for improve Cognitive Complexity.
+    Created for fixing Cognitive Complexity error.
     """
     for i in range(len(data) - 2):
         a, b, c = data[i], data[i + 1], data[i + 2]
