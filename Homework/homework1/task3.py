@@ -13,15 +13,19 @@ import io
 from typing import Tuple
 
 
-def find_maximum_and_minimum(file: io.StringIO()) -> Tuple[int, int]:
+def _find_maximum_and_minimum(file: io.StringIO()) -> Tuple[int, int]:
     """Find the max and min values in the file."""
     min_val = int(file.readline())
     max_val = min_val
     for line in file:
         new_val = int(line)
-        if new_val < min_val:
-            min_val = new_val
-        if new_val > max_val:
-            max_val = new_val
+        min_val = min(min_val, new_val)
+        max_val = max(max_val, new_val)
     file.close()
     return min_val, max_val
+
+
+def find_maximum_and_minimum(file_name: str) -> Tuple[int, int]:
+
+    file = io.StringIO(file_name)
+    return _find_maximum_and_minimum(file)
