@@ -9,12 +9,19 @@ from homework1.task2 import check_fibonacci
     ["value", "expected_result"],
     [
         ([0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55], True),
-        ([89, 144, 233, 377, 610, 987], True),
+        ([1, 1, 2, 3, 5, 8, 13, 21, 34, 55], True),
+        ([0, 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55], False),
+        ([54, 35, 67, 70], False),
+        ([89, 144, 233, 377, 610, 987], False),
         ([0, 0, 0, 0, 0, 0], False),
-        ([0, 0, 1, 1, 2, 3, 5, 8], False),
-        ([0, 1, 2, 1, 3, 8, 5], False),
         ([2, 5], False),
-        ([0, 0], False),
+        ([0, 1], False),
+        ([1, 1], False),
+        ([0, 1, 1], True),
+        ([1, 1, 2], True),
+        ([0, 1, 2], False),
+        ([1, 1, 3], False),
+        ([5, 6, 3], False),
     ],
 )
 def test_check_fibonacci(value: Sequence[int], expected_result: bool):
