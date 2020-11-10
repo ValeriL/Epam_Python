@@ -11,7 +11,7 @@ def major_and_minor_elem(inp: List) -> Tuple[int, int]:
     You may assume that the array is non-empty and the most common element
     always exist in the array.
 
-    If there are more than one minor, the function returns the min value
+    If there are more than one minor, the function returns the first entered value
     """
     count_el = defaultdict(int)
     for el in inp:
