@@ -1,12 +1,11 @@
-Beautiful.
-Explicit is.
-Simple is.
-Complicated.
-Nested.
-Sparse,
-Readability counts.
-Special.
-practicality beats
-silently.
-dieser Ver\u00e4nderung
-Oooooooooooooooooooooooooooooomg
+ab abc d
+abcd
+abcdef
+abcde
+!abcdefghi
+abcdefg,
+abcdefgh
+abcdefghij
+abcdefghijk
+Ver\u00e4nderung
+Oooooooooooooooooooooooooooooo
