@@ -20,7 +20,7 @@ def decoded_line_without_punc(line: str) -> str:
 
 
 def _find_word_max_unique(word: str, max_word: str, max_len: int) -> Tuple[str, int]:
-    cur_len = len(set(list(word)))
+    cur_len = len(set(word))
     if max_len < cur_len:
         max_len = cur_len
         max_word = word
