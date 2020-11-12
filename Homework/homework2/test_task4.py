@@ -1,25 +1,41 @@
-import timeit
+from typing import List
 
-from homework2.task4 import cache, func
-
-import pytest
+from homework2.task4 import cache
 
 
-@pytest.mark.parametrize(
-    ["some", "expected_result"],
-    [
-        ((150, 150), True),
-    ],
-)
-def test_cache(some: int, expected_result: bool):
+def test_cache_1():
+    def func(a: int, b: int) -> int:
+        return a * b
+
     cache_func = cache(func)
+    some = 100, 200
 
     val1 = cache_func(*some)
     val2 = cache_func(*some)
 
-    time1 = timeit.timeit("cache(func(150,150))", globals=globals())
-    time2 = timeit.timeit("cache(func(150,150))", globals=globals())
+    assert val1 is val2
 
-    actual_result = (val1 == val2) and (time2 < time1)
 
-    assert actual_result == expected_result
+def test_cache_2():
+    def foo(a=10) -> int:
+        return 3 + a
+
+    cache_func = cache(foo)
+
+    val1 = cache_func()
+    val2 = cache_func()
+
+    assert val1 is val2
+
+
+def test_cache_3():
+    def boo(nums: List[int]) -> int:
+        return sum(x + 1 for x in nums)
+
+    cache_func = cache(boo)
+    nums_list = [1, 2, 3]
+
+    val1 = cache_func(nums_list)
+    val2 = cache_func(nums_list)
+
+    assert val1 is val2

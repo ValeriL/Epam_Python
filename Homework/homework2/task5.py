@@ -2,7 +2,7 @@ from typing import Any, Iterable, List
 
 
 def custom_range(
-    input_line: Iterable, stop: Any, start: Any = None, step: int = 1
+    input_line: Iterable[Any], stop: Any, start: Any = None, step: int = 1
 ) -> List[Any]:
     """
     Write a function that accept any iterable of unique values and then it behaves as range function.

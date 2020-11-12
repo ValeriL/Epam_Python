@@ -11,20 +11,18 @@ val_1 = cache_func(*some)
 val_2 = cache_func(*some)
 assert val_1 is val_2
 """
-from collections.abc import Callable
-
-
-def func(a: int, b: int):
-    return (a ** b) ** 2
+from typing import Callable
 
 
 def cache(func: Callable) -> Callable:
-    cache_memory = {}
+    cache_memory = []
 
-    def caching(*args: int):
-        if args in cache_memory:
-            return cache_memory[args]
-        cache_memory[args] = func(*args)
-        return cache_memory[args]
+    def caching(*args):
+        for stored_args, result in cache_memory:
+            if stored_args == args:
+                return result
+        result = func(*args)
+        cache_memory.append((args, result))
+        return result
 
     return caching
