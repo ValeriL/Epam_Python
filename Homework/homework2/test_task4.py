@@ -22,8 +22,8 @@ def test_cache_2():
 
     cache_func = cache(foo)
 
-    val1 = cache_func()
-    val2 = cache_func()
+    val1 = cache_func(a=1)
+    val2 = cache_func(a=1)
 
     assert val1 is val2
 
@@ -37,5 +37,17 @@ def test_cache_3():
 
     val1 = cache_func(nums_list)
     val2 = cache_func(nums_list)
+
+    assert val1 is val2
+
+
+def test_cache_4():
+    def foo(a=10) -> int:
+        return 3 + a
+
+    cache_func = cache(foo)
+
+    val1 = cache_func(a=1)
+    val2 = cache_func(a=1)
 
     assert val1 is val2

@@ -17,12 +17,12 @@ from typing import Callable
 def cache(func: Callable) -> Callable:
     cache_memory = []
 
-    def caching(*args):
+    def caching(*args, **kwargs):
         for stored_args, result in cache_memory:
-            if stored_args == args:
+            if stored_args == (args, kwargs):
                 return result
-        result = func(*args)
-        cache_memory.append((args, result))
+        result = func(*args, **kwargs)
+        cache_memory.append(((args, kwargs), result))
         return result
 
     return caching
