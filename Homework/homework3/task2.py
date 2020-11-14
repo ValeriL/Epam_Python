@@ -11,6 +11,7 @@ import random
 import struct
 import time
 from multiprocessing import Pool
+from typing import List
 
 
 def slow_calculate(value: int) -> int:
@@ -20,8 +21,6 @@ def slow_calculate(value: int) -> int:
     return sum(struct.unpack("<" + "B" * len(data), data))
 
 
-def speed_up_calculate() -> float:
+def speed_up_calculate(value: int) -> List[int]:
     with Pool(30) as pool:
-        start = time.time()
-        pool.map(slow_calculate, range(0, 500))
-        return time.time() - start
+        return pool.map(slow_calculate, range(0, value))
