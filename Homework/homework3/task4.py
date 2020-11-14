@@ -14,14 +14,9 @@ Write a function that detects if a number is Armstrong number in functionaly sty
 """
 
 
-from functools import reduce
-
-
 def is_armstrong(number: int) -> bool:
     """Check is the input number an armstrong one."""
     number_str = str(number)
     number_length = len(number_str)
-    result = reduce(
-        (lambda x, y: x + y), [int(digit) ** number_length for digit in number_str]
-    )
+    result = sum(int(digit) ** number_length for digit in number_str)
     return result == number
