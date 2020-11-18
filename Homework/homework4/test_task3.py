@@ -13,7 +13,7 @@ def test_stdout(capsys):
     text = "OK"
     my_precious_logger(text)
     captured = capsys.readouterr()
-    assert captured.out, captured.err == text
+    assert captured.out == text
     assert captured.err == ""
 
 
