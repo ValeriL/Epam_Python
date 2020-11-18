@@ -5,14 +5,12 @@ from homework4.task1 import read_magic_number
 import pytest
 
 
-path = "Homework/homework4/test.txt"
-
-
 @pytest.fixture()
-def _del_file():
+def open_del_file(text: str):
+    path = "Homework/homework4/test.txt"
     with open(path, "w") as test_file:
-        test_file.write("abc")
-    yield
+        test_file.write(text)
+    yield path
     os.remove(path)
 
 
@@ -21,18 +19,15 @@ def test_file_existence_error():
         read_magic_number("any_file.txt")
 
 
-@pytest.mark.usefixtures("_del_file")
-def test_not_a_number_error():
+@pytest.mark.parametrize("text", ["abc", "12abc"])
+def test_not_a_number_error(open_del_file):
     with pytest.raises(ValueError, match="Not a number"):
-        read_magic_number(path)
+        read_magic_number(open_del_file)
 
 
 @pytest.mark.parametrize(
-    ["num", "expected_result"],
+    ["text", "expected_result"],
     [("0", False), ("1", True), ("3", False), ("7.56", False)],
 )
-@pytest.mark.usefixtures("_del_file")
-def test_read_magic_number(num: str, expected_result: bool):
-    with open(path, "w") as test_file:
-        test_file.write(num)
-    assert read_magic_number(path) == expected_result
+def test_read_magic_number(open_del_file, expected_result: bool):
+    assert read_magic_number(open_del_file) == expected_result

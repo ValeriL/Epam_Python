@@ -24,7 +24,7 @@ You will learn:
 import os
 
 
-def is_number(line: str) -> int or float:
+def check_num_string(line: str) -> float:
     """Check if the string is a number."""
     if line.isdigit():
         return int(line)
@@ -35,17 +35,15 @@ def is_number(line: str) -> int or float:
             raise ValueError("Not a number")
 
 
-def is_in_interval(num: int or float) -> bool:
+def is_in_interval(num: float) -> bool:
     """Check if number is an interval [1,3)."""
-    if num >= 1 and num < 3:
-        return True
-    return False
+    return True if 1 <= num < 3 else False
 
 
 def read_magic_number(path: str) -> bool:
     if os.path.exists(path):
         with open(path) as file:
             line = file.readline()
-            return is_in_interval(is_number(line))
+            return is_in_interval(check_num_string(line))
     else:
         raise ValueError("No such file")
