@@ -57,3 +57,9 @@ def fizzbuzz(n: int) -> List[str]:  # noqa
         else:
             fizzbuzz_numbers.append(str(i))
     return fizzbuzz_numbers
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
