@@ -36,8 +36,8 @@ def check_num_string(line: str) -> float:
 
 
 def is_in_interval(num: float) -> bool:
-    """Check if number is an interval [1,3)."""
-    return True if 1 <= num < 3 else False
+    """Check if number is in an interval [1,3)."""
+    return 1 <= num < 3
 
 
 def read_magic_number(path: str) -> bool:
