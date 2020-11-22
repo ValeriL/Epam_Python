@@ -15,7 +15,6 @@ print(custom_sum.__name__)  # 'custom_sum'
 print(custom_sum.__original_func)  # <function custom_sum at <some_id>>
 """
 
-import functools
 from typing import Callable
 
 
@@ -38,22 +37,3 @@ def print_result(func: Callable) -> Callable:
         return result
 
     return wrapper
-
-
-# All above was in the task file
-@print_result
-def custom_sum(*args):
-    """Sum any objects which have __add___."""
-    return functools.reduce(lambda x, y: x + y, args)
-
-
-if __name__ == "__main__":
-    custom_sum([1, 2, 3], [4, 5])
-    custom_sum(1, 2, 3, 4)
-
-    print(custom_sum.__doc__)  # noqa
-    print(custom_sum.__name__)  # noqa
-    without_print = custom_sum.__original_func
-
-    # the result returns without printing
-    without_print(1, 2, 3, 4)
