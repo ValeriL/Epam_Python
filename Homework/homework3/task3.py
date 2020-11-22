@@ -16,24 +16,16 @@ class Filter:
         return [item for item in data if all(i(item) for i in self.functions)]
 
 
-def make_filter(**keywords: Any):
+def make_filter(**keywords: Any) -> Filter:
     """Generate filter object for specified keywords."""
     filter_funcs = []
     for key, value in keywords.items():
 
-        def keyword_filter_func(data: Mapping[Any, Any]) -> bool:
-            return data[key] == value
+        def inner(key: Any, value: Any):
+            def keyword_filter_func(data: Mapping[Any, Any]) -> bool:
+                return key in data and data[key] == value
 
-        filter_funcs.append(keyword_filter_func)
+            return keyword_filter_func
+
+        filter_funcs.append(inner(key, value))
     return Filter(filter_funcs)
-
-
-sample_data = [
-    {
-        "name": "Bill",
-        "last_name": "Gilbert",
-        "occupation": "was here",
-        "type": "person",
-    },
-    {"is_dead": True, "kind": "parrot", "type": "bird", "name": "polly"},
-]
