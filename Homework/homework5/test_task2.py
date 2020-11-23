@@ -12,11 +12,22 @@ def test_decorator_save_doc_and_name_function_info():
 
 
 def test_addition_of_original_func_attribute():
+    def f():
+        """Any doc information."""
+        pass
+
+    f_decorated = print_result(f)
+
+    assert f_decorated.__original_func == f
+
+
+def test_decorated_function_print_result_of_original_funciton(capsys):
     @print_result
-    def f(a=5):
+    def f(a):
         """Any doc information."""
         return a
 
-    not_original_func = f.__original_func
+    f(5)
+    captured = capsys.readouterr()
 
-    assert not_original_func() == f()
+    assert captured.out == "5\n"
