@@ -45,10 +45,12 @@ import datetime
 from collections import defaultdict
 
 
-class DeadlineError(Exception):
-    """Error raises when homework is not active."""
+class MyLibraryError(Exception):
+    """Base exception in my library."""
 
-    pass
+
+class DeadlineError(MyLibraryError):
+    """Error raises when homework's deadline passed."""
 
 
 class HomeworkResult:
