@@ -49,8 +49,18 @@ class DeadlineError(Exception):
     """Error raises when homework's deadline passed."""
 
 
+class Homework:
+    def __init__(self, text: str, deadline: int):
+        self.text = text
+        self.deadline = datetime.timedelta(days=deadline)
+        self.created = datetime.datetime.now()
+
+    def is_active(self) -> bool:
+        return self.created + self.deadline > datetime.datetime.now()
+
+
 class HomeworkResult:
-    def __init__(self, author, homework, solution):
+    def __init__(self, author, homework: Homework, solution: str):
         if isinstance(homework, Homework):
             self.homework = homework
         else:
@@ -61,13 +71,15 @@ class HomeworkResult:
 
 
 class Person:
-    def __init__(self, first_name, last_name):
+    def __init__(self, first_name: str, last_name: str):
         self.first_name = first_name
         self.last_name = last_name
 
 
 class Student(Person):
-    def do_homework(self, homework, solution):
+    def do_homework(self, homework: Homework, solution: str) -> HomeworkResult:
+        if not isinstance(homework, Homework):
+            raise TypeError("You gave not a Homework object")
         if homework.is_active():
             return HomeworkResult(self, homework, solution)
         raise DeadlineError("You are late")
@@ -77,7 +89,9 @@ class Teacher(Person):
 
     homework_done = defaultdict(list)
 
-    def check_homework(self, homework_result):
+    def check_homework(self, homework_result: HomeworkResult) -> bool:
+        if not isinstance(homework_result, HomeworkResult):
+            raise TypeError("You gave not a HomeworkResult object")
         homework = homework_result.homework
         if (
             len(homework_result.solution) > 5
@@ -87,7 +101,7 @@ class Teacher(Person):
             return True
         return False
 
-    def create_homework(self, text, days):
+    def create_homework(self, text: str, days: int) -> Homework:
         return Homework(text, days)
 
     @classmethod
@@ -98,13 +112,3 @@ class Teacher(Person):
             cls.homework_done.clear()
         else:
             raise TypeError("You gave not a Homework object")
-
-
-class Homework:
-    def __init__(self, text, deadline):
-        self.text = text
-        self.deadline = datetime.timedelta(days=deadline)
-        self.created = datetime.datetime.now()
-
-    def is_active(self) -> bool:
-        return self.created + self.deadline > datetime.datetime.now()
