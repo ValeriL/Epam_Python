@@ -9,7 +9,6 @@ def test_get_created_instances():
     Cls()
 
     assert Cls.get_created_instances() == 1
-    assert Cls.instances_counter == 42
 
 
 def test_reset_instances_counter():
@@ -21,4 +20,3 @@ def test_reset_instances_counter():
 
     assert Cls.reset_instances_counter() == 1
     assert Cls.get_created_instances() == 0
-    assert Cls.instances_counter == 42

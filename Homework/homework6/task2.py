@@ -12,21 +12,21 @@ reset_instances_counter - сбросить счетчик экземпляров
 def instances_counter(cls):
     class ExtendClass(cls):
 
-        __instances_counter = 0
+        instances_counter = 0
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
-            self.__class__.__instances_counter += 1
+            self.__class__.instances_counter += 1
 
         @classmethod
         def get_created_instances(cls):
-            return cls.__instances_counter
+            return cls.instances_counter
 
         @classmethod
         def reset_instances_counter(cls):
             try:
-                return cls.__instances_counter
+                return cls.instances_counter
             finally:
-                cls.__instances_counter = 0
+                cls.instances_counter = 0
 
     return ExtendClass
