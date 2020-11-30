@@ -45,11 +45,7 @@ import datetime
 from collections import defaultdict
 
 
-class MyLibraryError(Exception):
-    """Base exception in my library."""
-
-
-class DeadlineError(MyLibraryError):
+class DeadlineError(Exception):
     """Error raises when homework's deadline passed."""
 
 
@@ -64,18 +60,20 @@ class HomeworkResult:
         self.created = datetime.datetime.now()
 
 
-class Student:
+class Person:
     def __init__(self, first_name, last_name):
         self.first_name = first_name
         self.last_name = last_name
 
+
+class Student(Person):
     def do_homework(self, homework, solution):
         if homework.is_active():
             return HomeworkResult(self, homework, solution)
         raise DeadlineError("You are late")
 
 
-class Teacher(Student):
+class Teacher(Person):
 
     homework_done = defaultdict(list)
 
@@ -96,8 +94,10 @@ class Teacher(Student):
     def reset_results(cls, homework=None):
         if isinstance(homework, Homework):
             cls.homework_done[homework] = []
-        else:
+        elif homework is None:
             cls.homework_done.clear()
+        else:
+            raise TypeError("You gave not a Homework object")
 
 
 class Homework:

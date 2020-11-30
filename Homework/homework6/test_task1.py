@@ -21,8 +21,6 @@ def test_do_homework_for_expired_homework():
 
 
 def test_check_incorrect_homework():
-    Teacher.homework_done.clear()
-
     homework = Homework("Any homework", 1)
     incorrect_result = student.do_homework(homework, "<5")
 
@@ -41,6 +39,8 @@ def test_check_correct_homework():
 
 
 def test_check_homework_is_without_addition_repeated_solution_into_homework_done_dict():
+    Teacher.homework_done.clear()
+
     teacher1 = Teacher("Daniil", "Shadrin")
     teacher2 = Teacher("Aleksandr", "Smetanin")
 
@@ -57,6 +57,8 @@ def test_check_homework_is_without_addition_repeated_solution_into_homework_done
 
 
 def test_reset_homework_results_for_given_homework():
+    Teacher.homework_done.clear()
+
     homework1 = teacher.create_homework("HW1", 1)
     homework2 = teacher.create_homework("HW2", 1)
 
@@ -86,3 +88,9 @@ def test_reset_all_homework_results():
     teacher.check_homework(result2)
 
     assert not Teacher.reset_results()
+
+
+def test_reset_homework_results_raise_typeerror():
+    homework_str = "homework"
+    with pytest.raises(TypeError, match="You gave not a Homework object"):
+        Teacher.reset_results(homework_str)
