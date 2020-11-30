@@ -48,12 +48,9 @@ def test_check_homework_is_without_addition_repeated_solution_into_homework_done
     result = student.do_homework(homework, "Homework is done.")
 
     teacher1.check_homework(result)
-    results1 = teacher1.homework_done
-
     teacher2.check_homework(result)
-    results2 = Teacher.homework_done
 
-    assert results1 == results2
+    assert Teacher.homework_done == defaultdict(list, {homework: [result]})
 
 
 def test_reset_homework_results_for_given_homework():
@@ -66,13 +63,11 @@ def test_reset_homework_results_for_given_homework():
     result2 = student.do_homework(homework2, "Any solution.")
 
     teacher.check_homework(result1)
-    results = Teacher.homework_done
-
     teacher.check_homework(result2)
 
     Teacher.reset_results(homework2)
 
-    assert Teacher.homework_done == results
+    assert Teacher.homework_done == defaultdict(list, {homework1: [result1]})
 
 
 def test_reset_all_homework_results():
@@ -87,7 +82,9 @@ def test_reset_all_homework_results():
     teacher.check_homework(result1)
     teacher.check_homework(result2)
 
-    assert not Teacher.reset_results()
+    Teacher.reset_results()
+
+    assert not Teacher.homework_done
 
 
 def test_reset_homework_results_raise_typeerror():

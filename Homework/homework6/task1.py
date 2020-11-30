@@ -107,7 +107,7 @@ class Teacher(Person):
     @classmethod
     def reset_results(cls, homework=None):
         if isinstance(homework, Homework):
-            cls.homework_done[homework] = []
+            del cls.homework_done[homework]
         elif homework is None:
             cls.homework_done.clear()
         else:
