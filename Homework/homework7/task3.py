@@ -19,7 +19,7 @@ Example:
 from typing import List
 
 
-def result(winners: List) -> str:
+def check_game_result(winners: List) -> str:
     amount_winners = len(winners)
 
     if amount_winners == 1:
@@ -31,7 +31,7 @@ def result(winners: List) -> str:
 
 
 def tic_tac_toe_checker(board: List[List]) -> str:
-    lined_board = sum(board, [])
+    flat_board = sum(board, [])
     win_idx_comb = [
         (0, 1, 2),
         (3, 4, 5),
@@ -45,9 +45,9 @@ def tic_tac_toe_checker(board: List[List]) -> str:
     winners = []
 
     for comb in win_idx_comb:
-        cur_comb = [lined_board[idx] for idx in comb]
+        cur_comb = [flat_board[idx] for idx in comb]
         cur_sign = cur_comb[0]
-        if len(set(cur_comb)) == 1 and cur_sign != "-":
+        if cur_comb.count(cur_sign) == 3 and cur_sign != "-":
             winners.append(cur_sign)
 
-    return result(winners)
+    return check_game_result(winners)
