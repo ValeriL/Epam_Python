@@ -15,9 +15,18 @@ Examples:
     Output: False
     Explanation: s becomes "c" while t becomes "b".
 """
-import re
+
+
+def backspaced_string(string: str) -> str:
+    new_string = ""
+    for char in string:
+        if char != "#":
+            new_string += char
+        else:
+            new_string = new_string[:-1]
+    return new_string
 
 
 def backspace_compare(first: str, second: str) -> bool:
-    backspace = ".?#"
-    return re.sub(backspace, "", first) == re.sub(backspace, "", second)
+
+    return backspaced_string(first) == backspaced_string(second)
