@@ -13,22 +13,17 @@ from typing import Any, Iterable
 def chain_collection(collection: Iterable):
     if isinstance(collection, dict):
         return chain.from_iterable(collection.items())
-    return chain(collection)
-
-
-def count_occurrences(collection: Iterable, element: Any) -> int:
-
-    collection = chain_collection(collection)
-
-    count = 0
-    for el in collection:
-        count += el == element
-        if isinstance(el, (dict, tuple, list, set)):
-            count += count_occurrences(el, element)
-
-    return count
+    return collection
 
 
 def find_occurrences(tree: dict, element: Any) -> int:
 
-    return count_occurrences(tree, element)
+    collection = chain_collection(tree)
+
+    count = 0
+    for el in collection:
+        count += el == element
+        if isinstance(el, Iterable) and not isinstance(el, str):
+            count += find_occurrences(el, element)
+
+    return count
