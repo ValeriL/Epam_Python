@@ -38,6 +38,7 @@ def example_tree():
         (5, 0),
         ([], 1),
         ({}, 0),
+        ("s", 0),
     ],
 )
 def test_find_occurrences(example_tree, element_to_find: Any, number_occurrences: int):
