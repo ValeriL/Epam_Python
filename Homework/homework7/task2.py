@@ -17,7 +17,7 @@ Examples:
 """
 
 
-def backspaced_string(string: str) -> str:
+def apply_backspace(string: str) -> str:
     new_string_list = []
     for char in string:
         if char != "#":
@@ -28,5 +28,4 @@ def backspaced_string(string: str) -> str:
 
 
 def backspace_compare(first: str, second: str) -> bool:
-
-    return backspaced_string(first) == backspaced_string(second)
+    return apply_backspace(first) == apply_backspace(second)
