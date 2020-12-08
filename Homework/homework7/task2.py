@@ -18,13 +18,13 @@ Examples:
 
 
 def backspaced_string(string: str) -> str:
-    new_string = ""
+    new_string_list = []
     for char in string:
         if char != "#":
-            new_string += char
-        else:
-            new_string = new_string[:-1]
-    return new_string
+            new_string_list.append(char)
+        elif new_string_list:
+            new_string_list.pop()
+    return "".join(new_string_list)
 
 
 def backspace_compare(first: str, second: str) -> bool:
