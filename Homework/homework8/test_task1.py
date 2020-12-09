@@ -30,3 +30,9 @@ def test_raise_error_if_int_attribute(temp_file):
 @pytest.mark.parametrize("text", ["power=9001\n"])
 def test_treated_as_int(temp_file):
     assert isinstance(KeyValueStorage(temp_file).power, int)
+
+
+@pytest.mark.parametrize("text", ["name=name1\nname=name2\n"])
+def test_attribute_clash(temp_file):
+    storage = KeyValueStorage(temp_file)
+    assert storage.name == "name1"
