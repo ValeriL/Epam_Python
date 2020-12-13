@@ -6,6 +6,10 @@ import pytest
 def test_suppressor_class():
     with Suppressor(IndexError):
         assert [][2]
+    with Suppressor(BaseException):
+        raise Exception("Hello")
+    with Suppressor(BaseException):
+        raise ZeroDivisionError
 
 
 def test_suppressor_class_exception_raised_if_exception_not_in_suppressor():
@@ -17,6 +21,10 @@ def test_suppressor_class_exception_raised_if_exception_not_in_suppressor():
 def test_suppressor_generator():
     with suppressor(IndexError):
         assert [][2]
+    with suppressor(BaseException):
+        raise Exception("Hello")
+    with Suppressor(BaseException):
+        raise ZeroDivisionError
 
 
 def test_suppressor_generator_exception_raised_if_exception_not_in_suppressor():
