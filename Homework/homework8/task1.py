@@ -23,21 +23,24 @@ In case when value cannot be assigned to an attribute
 (for example when there's a line 1=something) ValueError should be raised.
 File size is expected to be small, you are permitted to read it entirely into memory.
 """
+from keyword import iskeyword
 
 
 class KeyValueStorage:
     def __init__(self, path):  # noqa : CCR001
+        self._inner = {}
+
         with open(path) as file:
             for line in file:
-                attr, value = line.strip().split("=")
-                if attr.isdigit():
-                    raise ValueError("Int cant be an attribute")
-                if attr in self.__dict__:
-                    continue
+                attr, value = line.rstrip("\n").split("=", 1)
+                if not attr.isidentifier() or iskeyword(attr):
+                    raise ValueError("Cant be an attribute")
                 if value.isdigit():
-                    self.__dict__[attr] = int(value)
-                else:
-                    self.__dict__[attr] = value
+                    value = int(value)
+                self._inner[attr] = value
 
     def __getitem__(self, key):
-        return self.__dict__[key]
+        return self.__getattr__(key)
+
+    def __getattr__(self, key):
+        return self._inner[key]
