@@ -14,21 +14,18 @@ from pathlib import Path
 from typing import Callable, Optional
 
 
-def path_gen(dir_path: Path, file_extension: str):
-    for path in dir_path.iterdir():
-        if str(path).endswith(file_extension):
-            yield path
-
-
 def universal_file_counter(  # noqa : CCR001
     dir_path: Path, file_extension: str, tokenizer: Optional[Callable] = None
 ) -> int:
+
     token_count = 0
-    for path in path_gen(dir_path, file_extension):
-        with fileinput.input(path) as lines:
-            if tokenizer:
-                for token in map(tokenizer, lines):
-                    token_count += sum(1 for _ in token)
-            else:
+    for path in dir_path.glob("**/*" + file_extension):
+
+        if not tokenizer:
+            with fileinput.input(path) as lines:
                 token_count += sum(1 for _ in lines)
+        else:
+            with path.open("r") as file:
+                for token in map(tokenizer, file.read()):
+                    token_count += sum(1 for _ in token)
     return token_count
