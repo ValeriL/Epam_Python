@@ -27,10 +27,10 @@ def dir_path(text1: str, text2: str):
         ("line 1\nline 2", "line3", str.split, 5),
         ("", "", None, 0),
         ("", "", str.strip, 0),
+        ("aba\naba", "", lambda x: x.split("b"), 3),
     ],
 )
 def test_universal_file_counter(
     dir_path, tokenizer: Optional[Callable], token_count: int
 ):
-
     assert universal_file_counter(dir_path, "txt", tokenizer) == token_count

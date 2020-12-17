@@ -20,12 +20,11 @@ def universal_file_counter(  # noqa : CCR001
 
     token_count = 0
     for path in dir_path.glob("**/*" + file_extension):
-
-        if not tokenizer:
-            with fileinput.input(path) as lines:
-                token_count += sum(1 for _ in lines)
+        if tokenizer:
+            with open(path, "r") as file:
+                file_input = file.read()
+            if file_input:
+                token_count += sum(1 for token in tokenizer(file_input))
         else:
-            with path.open("r") as file:
-                for token in map(tokenizer, file.read()):
-                    token_count += sum(1 for _ in token)
+            token_count += sum(1 for _ in fileinput.input(path))
     return token_count
