@@ -28,7 +28,7 @@ def test_access_as_collection_and_as_attribute(temp_file, value):
     assert storage["name"] == value
 
 
-@pytest.mark.parametrize("text", ["1=kek\n", "def=kek\n"])
+@pytest.mark.parametrize("text", ["1=kek\n", "def=kek\n", "?=kek\n"])
 def test_raise_error_if_int_attribute(temp_file):
     with pytest.raises(ValueError, match="Cant be an attribute"):
         KeyValueStorage(temp_file)
