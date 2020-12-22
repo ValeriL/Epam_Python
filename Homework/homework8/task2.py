@@ -17,14 +17,15 @@ class TableData:
         self.table_name = table_name
 
     @database_connection
-    def __len__(self, cursor) -> int:
+    def __len__(self, cursor) -> int:  # noqa: S608
         cursor.execute(f"SELECT COUNT(*) FROM {self.table_name}")
         return cursor.fetchone()[0]
 
     @database_connection
     def __getitem__(self, cursor, item: str) -> Tuple[Any]:
         cursor.execute(
-            f"SELECT * FROM  {self.table_name} WHERE name=:item", {"item": item}
+            f"SELECT * FROM  {self.table_name} WHERE name=:item",
+            {"item": item},  # noqa: S608
         )
         row = cursor.fetchone()
         if not row:
@@ -41,5 +42,5 @@ class TableData:
             return True
 
     @database_connection
-    def __iter__(self, cursor) -> Tuple:
+    def __iter__(self, cursor) -> Tuple:  # noqa: S608
         yield from cursor.execute(f"SELECT * FROM {self.table_name}")
