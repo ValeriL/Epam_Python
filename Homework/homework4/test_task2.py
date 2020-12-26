@@ -16,7 +16,7 @@ def test_count_dot_on_i(monkeypatch):
                 b"<html>",
                 b"<head>hii</head>",
                 b"<body>hiii</body>",
-                b"/html",
+                b"</html>",
             ]
         ),
     )
