@@ -1,1 +1,52 @@
-[{"code": "TSLA", "name": "Tesla", "growth": 730.42}, {"code": "NVDA", "name": "NVIDIA Corp.", "growth": 123.47}, {"code": "PYPL", "name": "PayPal Inc", "growth": 114.02}, {"code": "LB", "name": "L Brands Inc", "growth": 109.88}, {"code": "ALB", "name": "Albemarle Corp.", "growth": 104.39}, {"code": "FCX", "name": "Freeport-McMoRan Inc", "growth": 102.21}, {"code": "AMD", "name": "AMD (Advanced Micro Devices)  Inc.", "growth": 101.24}, {"code": "CDNS", "name": "Cadence Design Systems Inc.", "growth": 95.0}, {"code": "NOW", "name": "ServiceNow Inc", "growth": 93.89}, {"code": "IDXX", "name": "IDEXX Laboratories", "growth": 90.31}]
+[
+    {
+        "code": "TSLA",
+        "name": "Tesla",
+        "growth": 694.18
+    },
+    {
+        "code": "ENPH",
+        "name": "Enphase Energy Inc",
+        "growth": 570.64
+    },
+    {
+        "code": "LB",
+        "name": "L Brands Inc",
+        "growth": 134.22
+    },
+    {
+        "code": "ALB",
+        "name": "Albemarle Corp.",
+        "growth": 130.14
+    },
+    {
+        "code": "FCX",
+        "name": "Freeport-McMoRan Inc",
+        "growth": 129.05
+    },
+    {
+        "code": "NVDA",
+        "name": "NVIDIA Corp.",
+        "growth": 118.89
+    },
+    {
+        "code": "PYPL",
+        "name": "PayPal Inc",
+        "growth": 113.63
+    },
+    {
+        "code": "ALGN",
+        "name": "Align Technology Inc.",
+        "growth": 91.63
+    },
+    {
+        "code": "AMD",
+        "name": "AMD (Advanced Micro Devices)  Inc.",
+        "growth": 90.38
+    },
+    {
+        "code": "PWR",
+        "name": "Quanta Services Inc.",
+        "growth": 85.82
+    }
+]

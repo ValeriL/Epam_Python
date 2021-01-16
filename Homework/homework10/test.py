@@ -35,8 +35,7 @@ def test_write_json():
         ]
 
 
-def test_company_data_getters(monkeypatch):
-    import homework10.task
+def test_company_data_getters():
 
     with open("Homework/homework10/example_company_page.html", "r") as f:
         soup = BeautifulSoup(f.read(), "lxml")
@@ -44,14 +43,12 @@ def test_company_data_getters(monkeypatch):
     def mock_current_currency():
         return 100
 
-    monkeypatch.setattr(homework10.task, "get_current_currency", mock_current_currency)
-
     assert get_company_name(soup) == "Tesla"
     assert get_company_code(soup) == "TSLA"
     assert get_pe_ratio(soup) == 14392.16
     assert get_low_high(soup) == (70.102, 718.72)
     assert get_profit((1, 2)) == 100
-    assert get_stock_price(soup) == 72372.0
+    assert get_stock_price(soup, mock_current_currency()) == 72372.0
 
 
 @pytest.mark.asyncio
