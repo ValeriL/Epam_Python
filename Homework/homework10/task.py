@@ -35,8 +35,8 @@ def get_stock_price(company_page_soup, currency: float) -> float:
     return round(float(stock_price_usd.replace(",", "")) * currency, 2)
 
 
-def get_pe_ratio(company_page_soup) -> float:
-    """Get P/E ratio from the page."""
+def price_to_earnings_ratio(company_page_soup) -> float:
+    """Get P/E (price-earnings) ratio from the page."""
     try:
         return float(
             company_page_soup.find(
@@ -99,7 +99,7 @@ async def get_company_data(company: List, currency) -> Dict:
         "name": get_company_name(company_page_soup),
         "code": get_company_code(company_page_soup),
         "price": get_stock_price(company_page_soup, currency),
-        "pe_ratio": get_pe_ratio(company_page_soup),
+        "pe_ratio": price_to_earnings_ratio(company_page_soup),
         "growth": company["growth"],
         "profit": get_profit(get_low_high(company_page_soup)),
     }

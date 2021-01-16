@@ -10,9 +10,9 @@ from homework10.task import (
     get_company_code,
     get_company_name,
     get_low_high,
-    get_pe_ratio,
     get_profit,
     get_stock_price,
+    price_to_earnings_ratio,
     write_json,
 )
 
@@ -45,7 +45,7 @@ def test_company_data_getters():
 
     assert get_company_name(soup) == "Tesla"
     assert get_company_code(soup) == "TSLA"
-    assert get_pe_ratio(soup) == 14392.16
+    assert price_to_earnings_ratio(soup) == 14392.16
     assert get_low_high(soup) == (70.102, 718.72)
     assert get_profit((1, 2)) == 100
     assert get_stock_price(soup, mock_current_currency()) == 72372.0
