@@ -1,0 +1,52 @@
+[
+    {
+        "code": "TSLA",
+        "name": "Tesla",
+        "profit": 1161.66
+    },
+    {
+        "code": "ENPH",
+        "name": "Enphase Energy Inc",
+        "profit": 934.6
+    },
+    {
+        "code": "APA",
+        "name": "Apache Corp.",
+        "profit": 784.51
+    },
+    {
+        "code": "NCLH",
+        "name": "Norwegian Cruise Line Ltd",
+        "profit": 750.36
+    },
+    {
+        "code": "RCL",
+        "name": "Royal Caribbean Cruises Ltd.",
+        "profit": 602.08
+    },
+    {
+        "code": "FCX",
+        "name": "Freeport-McMoRan Inc",
+        "profit": 572.46
+    },
+    {
+        "code": "CCL",
+        "name": "Carnival Corp & plc paired",
+        "profit": 565.83
+    },
+    {
+        "code": "OKE",
+        "name": "ONEOK Inc (New)",
+        "profit": 545.31
+    },
+    {
+        "code": "LB",
+        "name": "L Brands Inc",
+        "profit": 503.62
+    },
+    {
+        "code": "MGM",
+        "name": "MGM Resorts International",
+        "profit": 486.54
+    }
+]
