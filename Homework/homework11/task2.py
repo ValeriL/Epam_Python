@@ -24,13 +24,13 @@ import types
 
 
 class Order:
-    def __init__(self, price, discount_price=None):
+    def __init__(self, price, discount_mode=None):
         self.price = price
-        if discount_price:
-            self.discount_price = types.MethodType(discount_price, self)
+        if discount_mode:
+            self.discount_price = types.MethodType(discount_mode, self)
 
     def final_price(self):
         try:
-            return self.discount_price()
+            return self.discount_mode()
         except AttributeError:
             return self.price
